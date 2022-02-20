@@ -19,24 +19,23 @@ public class View_Painel extends javax.swing.JFrame {
 
     public View_Painel() {
         initComponents();
-        readJTable();
+        LerTabela();
         jtfInicio.setText(PegarData());
         jtfVencimento.setText(PegarDataMaisTrinta());
-
     }
 
-    public static void LembreteWhats(String nome2, String telefone2, String vencimento2) { 
+    public static void LembreteWhats(String nome2, String telefone2, String vencimento2) {
         String nome = nome2;
         String telefone = telefone2;
         String vencimento = vencimento2;
-        
+
         System.out.println(nome);
         System.out.println(telefone);
         System.out.println(vencimento);
-        
+
         try {
             try {
-                java.awt.Desktop.getDesktop().browse(new java.net.URI("https://api.whatsapp.com/send?phone=55"+telefone+"&text=Ol%C3%A1%20"+nome+"%2C%20gostaria%20de%20lembrar%20o%20vencimento%20do%20seu%20iptv%20dia%20"+vencimento+".%20Para%20renovar%2C%20basta%20me%20avisar%20por%20aqui%20mesmo%20que%20eu%20irei%20atualizar%20o%20seu%20usu%C3%A1rio%20!"));
+                java.awt.Desktop.getDesktop().browse(new java.net.URI("https://api.whatsapp.com/send?phone=55" + telefone + "&text=Ol%C3%A1%20" + nome + "%2C%20gostaria%20de%20lembrar%20o%20vencimento%20do%20seu%20iptv%20dia%20" + vencimento + ".%20Para%20renovar%2C%20basta%20me%20avisar%20por%20aqui%20mesmo%20que%20eu%20irei%20atualizar%20o%20seu%20usu%C3%A1rio%20!"));
             } catch (URISyntaxException ex) {
                 Logger.getLogger(Encurtador.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -78,13 +77,13 @@ public class View_Painel extends javax.swing.JFrame {
 
             crud.RenovarCliente(c);
 
-            readJTable();
+            LerTabela();
 
         }
 
     }
 
-    public void AlterarCliente() {
+    public static void AlterarCliente() {
         if (tb_clientes.getSelectedRow()
                 != -1) {
             Cliente c = new Cliente();
@@ -101,7 +100,7 @@ public class View_Painel extends javax.swing.JFrame {
 
             crud.atualizarCliente(c);
 
-            readJTable();
+            LerTabela();
 
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possível atualizar.");
@@ -130,10 +129,10 @@ public class View_Painel extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar");
         }
-        readJTable();
+        LerTabela();
     }
 
-    public void readJTable() {
+    public static void LerTabela() {
 
         DefaultTableModel modelo = (DefaultTableModel) tb_clientes.getModel();
         modelo.setNumRows(0);
@@ -188,7 +187,7 @@ public class View_Painel extends javax.swing.JFrame {
 
             crud.deleteCliente(c);
 
-            readJTable();
+            LerTabela();
 
         } else {
             JOptionPane.showMessageDialog(null, "Selecione alguém para excluir.");
@@ -202,17 +201,16 @@ public class View_Painel extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_clientes = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
-        btnCadastrar2 = new javax.swing.JButton();
         btnRenovar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
+        btnLembrete = new javax.swing.JButton();
+        btnAbrirPainel = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        btnCadastrar2 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jtfInicio = new javax.swing.JFormattedTextField();
         jtfNome = new javax.swing.JTextField();
@@ -266,48 +264,7 @@ public class View_Painel extends javax.swing.JFrame {
             tb_clientes.getColumnModel().getColumn(7).setPreferredWidth(60);
         }
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel8.setText("CADASTRO DE CLIENTES IPTV");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addContainerGap())
-        );
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Gerenciamento"));
-
-        jButton1.setText("Editar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
-        btnCadastrar2.setText("Excluir");
-        btnCadastrar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrar2ActionPerformed(evt);
-            }
-        });
 
         btnRenovar.setText("Renovar");
         btnRenovar.addActionListener(new java.awt.event.ActionListener() {
@@ -325,17 +282,46 @@ public class View_Painel extends javax.swing.JFrame {
             }
         });
 
+        btnLembrete.setText("Lembrete");
+        btnLembrete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLembreteActionPerformed(evt);
+            }
+        });
+
+        btnAbrirPainel.setText("Abrir Painel");
+        btnAbrirPainel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirPainelActionPerformed(evt);
+            }
+        });
+
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setToolTipText("");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Lembrete");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnCadastrar2.setText("Excluir");
+        btnCadastrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrar2ActionPerformed(evt);
+            }
+        });
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -346,18 +332,23 @@ public class View_Painel extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCadastrar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRenovar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                    .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRenovar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAbrirPainel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLembrete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCadastrar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -365,19 +356,20 @@ public class View_Painel extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
-                    .addComponent(btnRenovar))
+                    .addComponent(btnRenovar)
+                    .addComponent(btnAbrirPainel)
+                    .addComponent(btnCadastrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
+                    .addComponent(btnLembrete)
+                    .addComponent(btnLimpar)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar2)
-                    .addComponent(jButton2)
-                    .addComponent(btnLimpar))
-                .addContainerGap())
+                    .addComponent(btnBuscar)
+                    .addComponent(btnCadastrar2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         try {
@@ -499,34 +491,30 @@ public class View_Painel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -544,7 +532,13 @@ public class View_Painel extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar2ActionPerformed
-        ExcluirCliente();
+        String cliente = (String) tb_clientes.getValueAt(tb_clientes.getSelectedRow(), 1);
+
+        int alt = JOptionPane.showConfirmDialog(null, "Você vai excluir o usuário: " + cliente.split(" ")[0]);
+        System.out.println(alt);
+        if (alt == 0) {
+            ExcluirCliente();
+        }
     }//GEN-LAST:event_btnCadastrar2ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -584,11 +578,24 @@ public class View_Painel extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- 
-        LembreteWhats(jtfNome.getText().split(" ")[0], jtfTelefone.getText().replaceAll("[^0-9]", ""),jtfVencimento.getText());
+    private void btnLembreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLembreteActionPerformed
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+        LembreteWhats(jtfNome.getText().split(" ")[0], jtfTelefone.getText().replaceAll("[^0-9]", ""), jtfVencimento.getText());
+
+    }//GEN-LAST:event_btnLembreteActionPerformed
+
+    private void btnAbrirPainelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirPainelActionPerformed
+
+        try {
+            try {
+                java.awt.Desktop.getDesktop().browse(new java.net.URI("http://cms.cloudnation.vip/"));
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(Encurtador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Encurtador.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_btnAbrirPainelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -626,14 +633,15 @@ public class View_Painel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirPainel;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCadastrar2;
+    private javax.swing.JButton btnLembrete;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRenovar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -641,19 +649,17 @@ public class View_Painel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jtfEmail;
-    private javax.swing.JFormattedTextField jtfInicio;
-    private javax.swing.JTextField jtfNome;
-    private javax.swing.JTextField jtfSenha;
-    private javax.swing.JFormattedTextField jtfTelefone;
-    private javax.swing.JTextField jtfUsuario;
-    private javax.swing.JFormattedTextField jtfVencimento;
-    private javax.swing.JTable tb_clientes;
+    public static javax.swing.JTextField jtfEmail;
+    public static javax.swing.JFormattedTextField jtfInicio;
+    public static javax.swing.JTextField jtfNome;
+    public static javax.swing.JTextField jtfSenha;
+    public static javax.swing.JFormattedTextField jtfTelefone;
+    public static javax.swing.JTextField jtfUsuario;
+    public static javax.swing.JFormattedTextField jtfVencimento;
+    public static javax.swing.JTable tb_clientes;
     // End of variables declaration//GEN-END:variables
 }
