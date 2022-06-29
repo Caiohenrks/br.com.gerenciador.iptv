@@ -1,0 +1,10 @@
+CREATE TABLE cliente(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    nome varchar(50),
+    usuario varchar(50),
+    senha varchar(50),
+    telefone varchar(50),
+    email varchar(50),
+    inicio varchar(50),
+    vencimento varchar(50)
+);
